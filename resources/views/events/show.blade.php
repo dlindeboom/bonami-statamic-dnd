@@ -30,7 +30,7 @@
                             <span class="font-semibold text-gray-700">Bio:</span>{!! $page->dungeon_master->bio !!}
                         </div>
 
-                        <a href="{{ $page->dungeon_master->rules_url }}" class="text-bonami-blue inline-block mt-2">View DM's Rules</a>
+                        <a href="{{ $page->dungeon_master->rules_url }}" target="_blank" class="text-bonami-blue inline-block mt-2">View DM's Rules</a>
                     </div>
                 @endif
 
