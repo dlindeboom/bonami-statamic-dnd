@@ -47,7 +47,7 @@ tabs:
               replicator_preview: true
               hide_display: false
           -
-            handle: text_field
+            handle: rules_url
             field:
               input_type: text
               antlers: false
