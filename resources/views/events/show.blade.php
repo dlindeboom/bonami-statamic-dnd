@@ -22,15 +22,17 @@
             <!-- Side Column for Desktop DM Info -->
             <div class="lg:flex flex-1 flex-col mb-4">
                 <!-- DM Info -->
-                <div class="bg-white p-6 rounded-lg shadow-lg mb-4">
-                    <h3 class="text-xl font-bold">Dungeon Master: {{ $page->dungeon_master->title }}</h3>
+                @if($page->dungeon_master)
+                    <div class="bg-white p-6 rounded-lg shadow-lg mb-4">
+                        <h3 class="text-xl font-bold">Dungeon Master: {{ $page->dungeon_master->title }}</h3>
 
-                    <div class="prose prose-sm max-w-none">
-                        <span class="font-semibold text-gray-700">Bio:</span>{!! $page->dungeon_master->bio !!}
+                        <div class="prose prose-sm max-w-none">
+                            <span class="font-semibold text-gray-700">Bio:</span>{!! $page->dungeon_master->bio !!}
+                        </div>
+
+                        <a href="{{ $page->dungeon_master->text_field }}" class="text-bonami-blue inline-block mt-2">View DM's Rules</a>
                     </div>
-
-                    <a href="{{ $page->dungeon_master->text_field }}" class="text-bonami-blue inline-block mt-2">View DM's Rules</a>
-                </div>
+                @endif
 
                 <!-- Join Event Section for Desktop -->
                 <div class="bg-white p-6 rounded-lg shadow-lg">
@@ -48,4 +50,6 @@
     </div>
 @endsection
 
-@section('heroImage'){{ $page->hero_image->url() }}@endsection
+@if($page->hero_image)
+    @section('heroImage'){{ $page->hero_image->url() }}@endsection
+@endif
