@@ -57,7 +57,7 @@ tabs:
               antlers: false
               hide_display: false
               if:
-                page_display: 'equals default'
+                layout: 'contains default'
       -
         display: SEO
         fields:

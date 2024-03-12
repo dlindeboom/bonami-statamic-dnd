@@ -7,3 +7,7 @@
         {!! $page->content !!}
     </div>
 @endsection
+
+@if($page->hero_banner)
+    @section('heroImage'){{ $page->hero_banner->url() }}@endsection
+@endif
