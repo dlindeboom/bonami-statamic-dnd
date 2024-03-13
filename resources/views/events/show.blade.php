@@ -36,10 +36,20 @@
 
                 <!-- Join Event Section for Desktop -->
                 <div class="bg-white p-6 rounded-lg shadow-lg">
-                    <button class="bg-bonami-blue text-white font-bold py-2 px-4 rounded hover:bg-blue-700 disabled:opacity-50"
-                            @if($page->slots_left <= 0) disabled @endif>
-                        Join Now
-                    </button>
+                    <form method="post" action="{{ route('events.signup') }}">
+                        {{ csrf_field() }}
+                        @method('POST')
+                        <input type="hidden" name="event_id" value="{{ $page->id }}">
+                        <label for="email">Email</label>
+                        <input id="email" type="email" name="email">
+                        <label for="name">Name</label>
+                        <input id="name" type="text" name="name">
+
+                        <button class="bg-bonami-blue text-white font-bold py-2 px-4 rounded hover:bg-blue-700 disabled:opacity-50"
+                                @if($page->slots_left <= 0) disabled @endif>
+                            Join Now
+                        </button>
+                    </form>
                     <div class="mt-4">
                         <p><strong>Slots Remaining:</strong> {{ $page->slots_left }}</p>
                         <p><strong>Participants:</strong> {{ $page->participants }}/{{ $page->max_participants }}</p>
