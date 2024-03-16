@@ -16,7 +16,7 @@
         </nav>
 
         <!-- Header with a vintage look, maybe with a grayscale background and red accents -->
-        <header class="relative text-white text-center py-16 bg-no-repeat bg-top bg-cover border-b-4 border-bonami-red" style="background-image: url('@yield('heroImage')');">
+        <header class="relative text-white text-center py-16 bg-no-repeat bg-center bg-cover border-b-4 border-bonami-red" style="background-image: url('@yield('heroImage')');">
             <div class="absolute inset-0 bg-gray-800 bg-opacity-50"></div>
             <div class="relative z-10">
                 @yield('nextEvent')
@@ -26,20 +26,20 @@
         <!-- Countdown section with a modern yet retro feel -->
         <section class="container mx-auto text-center py-6">
             <h2 class="text-3xl font-bold mb-8 text-bonami-blue">COUNTDOWN TO EVENT</h2>
-            <div class="flex justify-center items-center space-x-8">
-                <div class="p-4">
+            <div class="flex justify-center items-center space-x-4 lg:space-x-8">
+                <div>
                     <p class="text-6xl font-bold text-bonami-red">10</p>
                     <p class="text-lg text-bonami-blue">DAYS</p>
                 </div>
-                <div class="p-4">
+                <div>
                     <p class="text-6xl font-bold text-bonami-red">22</p>
                     <p class="text-lg text-bonami-blue">HOURS</p>
                 </div>
-                <div class="p-4">
+                <div>
                     <p class="text-6xl font-bold text-bonami-red">55</p>
                     <p class="text-lg text-bonami-blue">MINUTES</p>
                 </div>
-                <div class="p-4">
+                <div>
                     <p class="text-6xl font-bold text-bonami-red">20</p>
                     <p class="text-lg text-bonami-blue">SECONDS</p>
                 </div>

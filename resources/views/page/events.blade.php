@@ -57,7 +57,7 @@
                             <h3 class="text-lg font-bold">{{ $event->title }}</h3>
                             <p class="text-sm">{{ $event->event_date }}</p>
                             @if($event->dungeon_master)
-                                <p class="text-sm"><span class="font-bold">Dungeon Master:</span> {{ $event->dungeon_master->name }}</p>
+                                <p class="text-sm"><span class="font-bold">Dungeon Master:</span> {{ $event->dungeon_master->title }}</p>
                             @endif
                             <p class="text-sm"><span class="font-bold">Slots Left:</span> {{ $event->max_participants - $event->participants->count() }}</p>
                         </a>
@@ -78,7 +78,9 @@
                     <a href="{{ $event->url }}">
                         <h3 class="text-lg font-bold">{{ $event->title }}</h3>
                         <p class="text-sm">{{ $event->event_date }}</p>
-                        <p><span class="font-bold">Dungeon Master:</span> {{ $event->dm_name }}</p>
+                        @if($event->dungeon_master)
+                            <p class="text-sm"><span class="font-bold">Dungeon Master:</span> {{ $event->dungeon_master->title }}</p>
+                        @endif
                     </a>
                 </div>
             @endforeach
