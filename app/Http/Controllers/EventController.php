@@ -2,38 +2,44 @@
 
 namespace App\Http\Controllers;
 
+use App\Exceptions\Events\EventIsFullException;
+use App\Exceptions\Events\EventNotFoundException;
+use App\Exceptions\Events\ParticipantAlreadySignUp;
 use App\Models\EventSignup;
+use App\Services\Participants\ParticipantService;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
-use Statamic\Facades\Entry;
-use Statamic\Entries\Entry as StatamicEntry;
 
 class EventController extends Controller
 {
-    public function signup(Request $request)
+    public function __construct(private readonly ParticipantService $participantService)
     {
-        /** @var StatamicEntry|null $event */
-        $event = Entry::query()
-            ->where('collection', 'events')
-            ->where('id', $request->event_id)
-            ->first();
+    }
 
-        if (!$event === null) {
-            abort(404);
-        }
-
+    public function signup(Request $request, string $eventId): RedirectResponse
+    {
         $data = $request->validate([
             'name' => 'required',
             'email' => 'required|email',
             'about_you' => 'nullable|max:140',
         ]);
 
-        $data['title'] = ucfirst($request->get('name'));
+        try {
+            $participant = $this->participantService->createParticipantObject($data);
+            $this->participantService->linkToEvent($eventId, $participant);
+        } catch (EventNotFoundException $e) {
+            return redirect(null, 404)->back()->withErrors(
+                'The event you are trying to sign up for does not exist.'
+            );
+        } catch (ParticipantAlreadySignUp $e) {
+            // We show the same message as if you have successfully signed up to avoid leaking information
+            return redirect()->back()->with('success', 'You have successfully signed up for the event!');
+        } catch (EventIsFullException $e) {
+            return redirect()->back()->withErrors(
+                'The event is full.'
+            );
+        }
 
-        Entry::make()
-            ->collection('participants')
-            ->data($data)
-            ->save();
-
-        return redirect($event->url())->with('message', 'Thanks for signing up!');
+        return redirect()->back()->with('success', 'You have successfully signed up for the event!');
     }
 }

@@ -15,7 +15,7 @@ use App\Http\Controllers\EventController;
 */
 
 Route::get('/', function () {
-    return view('home');
+    return redirect('/events');
 });
 
-Route::post('/event/signup', [EventController::class, 'signup'])->name('events.signup');
+Route::post('/events/{eventId}/signup', [EventController::class, 'signup'])->name('events.signup');

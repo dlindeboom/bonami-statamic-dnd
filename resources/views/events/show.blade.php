@@ -1,6 +1,13 @@
 @extends('layouts.default')
 
 @section('content')
+    @php
+        use Statamic\Entries\Entry;
+
+        /** @var Entry $page */
+        $slotsLeft = $page->max_participants - $page->participants->count();
+    @endphp
+
     <div class="pt-4">
         <nav aria-label="breadcrumb" class="bg-white py-3">
             <ol class="list-reset flex">
@@ -9,7 +16,7 @@
                 <li class="text-gray-500">{{ $page->title }}</li>
             </ol>
         </nav>
-       <div class="flex flex-col-reverse lg:flex-row lg:items-start lg:space-x-4">
+        <div class="flex flex-col-reverse lg:flex-row lg:items-start lg:space-x-4">
             <!-- Main Column for Adventure Info and Mobile DM Info + Join Section -->
             <div class="flex-1">
                 <!-- Adventure Info -->
@@ -21,6 +28,21 @@
 
             <!-- Side Column for Desktop DM Info -->
             <div class="lg:flex flex-1 flex-col mb-4">
+                <!-- Join Event Section for Desktop -->
+                <div class="bg-white p-6 rounded-lg mb-4 shadow-lg">
+                        <button
+                            type="button"
+                            onclick="document.dispatchEvent(new Event('open-signup'))"
+                            class="bg-bonami-blue text-white font-bold py-2 px-4 rounded hover:bg-blue-700 disabled:opacity-50"
+                            @if($slotsLeft <= 0) disabled @endif>
+                            Join Now
+                        </button>
+                    <div class="mt-4">
+                        <p><strong>Slots Remaining:</strong> {{ $slotsLeft }}</p>
+                        <p><strong>Participants:</strong> {{ $page->participants->count() }}/{{ $page->max_participants }}</p>
+                    </div>
+                </div>
+
                 <!-- DM Info -->
                 @if($page->dungeon_master)
                     <div class="bg-white p-6 rounded-lg shadow-lg mb-4">
@@ -30,34 +52,15 @@
                             <span class="font-semibold text-gray-700">Bio:</span>{!! $page->dungeon_master->bio !!}
                         </div>
 
-                        <a href="{{ $page->dungeon_master->rules_url }}" target="_blank" class="text-bonami-blue inline-block mt-2">View DM's Rules</a>
+                        <a href="{{ $page->dungeon_master->rules_url }}" target="_blank"
+                           class="text-bonami-blue inline-block mt-2">View DM's Rules</a>
                     </div>
                 @endif
-
-                <!-- Join Event Section for Desktop -->
-                <div class="bg-white p-6 rounded-lg shadow-lg">
-                    <form method="post" action="{{ route('events.signup') }}">
-                        {{ csrf_field() }}
-                        @method('POST')
-                        <input type="hidden" name="event_id" value="{{ $page->id }}">
-                        <label for="email">Email</label>
-                        <input id="email" type="email" name="email">
-                        <label for="name">Name</label>
-                        <input id="name" type="text" name="name">
-
-                        <button class="bg-bonami-blue text-white font-bold py-2 px-4 rounded hover:bg-blue-700 disabled:opacity-50"
-                                @if($page->slots_left <= 0) disabled @endif>
-                            Join Now
-                        </button>
-                    </form>
-                    <div class="mt-4">
-                        <p><strong>Slots Remaining:</strong> {{ $page->slots_left }}</p>
-                        <p><strong>Participants:</strong> {{ $page->participants }}/{{ $page->max_participants }}</p>
-                    </div>
-                </div>
             </div>
         </div>
     </div>
+
+    <x-models.event-signup :eventId="$page->id" />
 @endsection
 
 @if($page->hero_image)

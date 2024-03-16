@@ -94,10 +94,10 @@ tabs:
               replicator_preview: true
               hide_display: false
           -
-            handle: slots_left
+            handle: max_participants
             field:
               type: integer
-              display: 'Slots left'
+              display: 'Max participants'
               listable: hidden
               instructions_position: above
               visibility: visible
@@ -106,18 +106,12 @@ tabs:
           -
             handle: participants
             field:
-              type: integer
+              mode: select
+              create: false
+              collections:
+                - participants
+              type: entries
               display: Participants
-              listable: hidden
-              instructions_position: above
-              visibility: visible
-              replicator_preview: true
-              hide_display: false
-          -
-            handle: max_participants
-            field:
-              type: integer
-              display: 'Max participants'
               listable: hidden
               instructions_position: above
               visibility: visible

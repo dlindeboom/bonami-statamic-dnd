@@ -1,5 +1,39 @@
 @extends('layouts.events')
 
+@php
+    $nextEvent = Statamic::tag('collection:events')
+            ->queryScope('up_coming_event')
+            ->orderBy('event_date')->fetch()->first();
+    $nextEventDate = $nextEvent ? $nextEvent->event_date : null;
+@endphp
+
+@if($nextEvent !== null)
+    @section('nextEvent')
+            <h1 class="text-5xl font-bold mb-2">Dungeons & Dragons</h1>
+            <p class="text-2xl">at Bonami</p>
+            <p class="text-xl font-medium">Next adventure: {{ $nextEvent->title }}</p>
+            <p class="text-xl font-medium">{{ $nextEvent->event_date->format('F jS, Y H:i') }}</p>
+            <div class="mt-4">
+                <button
+                    class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"
+                    onclick="document.dispatchEvent(new Event('open-signup'))">
+                    Join Adventure
+                </button>
+                <a href="{{ $nextEvent->url() }}">
+                    <button
+                        type="button"
+                        class="bg-transparent hover:bg-red-500 text-red-500 font-semibold hover:text-white py-2 px-4 border border-red-500 hover:border-transparent rounded ml-4">
+                        Discover More
+                    </button>
+                </a>
+            </div>
+    @endsection
+
+    @section('modal')
+        <x-models.event-signup :eventId="$nextEvent->id" />
+    @endsection
+@endif
+
 @section('title', $page->seo_title)
 
 @section('content')
@@ -25,7 +59,7 @@
                             @if($event->dungeon_master)
                                 <p class="text-sm"><span class="font-bold">Dungeon Master:</span> {{ $event->dungeon_master->name }}</p>
                             @endif
-                            <p class="text-sm"><span class="font-bold">Slots Left:</span> {{ $event->slots_left }}</p>
+                            <p class="text-sm"><span class="font-bold">Slots Left:</span> {{ $event->max_participants - $event->participants->count() }}</p>
                         </a>
                     </div>
                     <button class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none">
@@ -41,9 +75,11 @@
                     ->queryScope('event_passed')
                     ->orderBy('event_date:desc') as $event)
                 <div class="p-4 mb-4 bg-white rounded shadow">
-                    <h3 class="text-lg font-bold">{{ $event->title }}</h3>
-                    <p class="text-sm">{{ $event->event_date }}</p>
-                    <p><span class="font-bold">Dungeon Master:</span> {{ $event->dm_name }}</p>
+                    <a href="{{ $event->url }}">
+                        <h3 class="text-lg font-bold">{{ $event->title }}</h3>
+                        <p class="text-sm">{{ $event->event_date }}</p>
+                        <p><span class="font-bold">Dungeon Master:</span> {{ $event->dm_name }}</p>
+                    </a>
                 </div>
             @endforeach
         </div>

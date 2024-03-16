@@ -19,15 +19,7 @@
         <header class="relative text-white text-center py-16 bg-no-repeat bg-top bg-cover border-b-4 border-bonami-red" style="background-image: url('@yield('heroImage')');">
             <div class="absolute inset-0 bg-gray-800 bg-opacity-50"></div>
             <div class="relative z-10">
-                <h1 class="text-5xl font-bold mb-2">Dungeons & Dragons</h1>
-                <p class="text-2xl mb-4">at Bonami</p>
-                <p class="text-xl font-medium">{{ now()->setDay('24')->setMonth('3')->setHour('14')->setMinute('30')->setSecond('0')->format('F jS, Y H:i') }}</p>
-                <div class="mt-4">
-                    <button class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">Join Adventure</button>
-                    <button class="bg-transparent hover:bg-red-500 text-red-500 font-semibold hover:text-white py-2 px-4 border border-red-500 hover:border-transparent rounded ml-4">
-                        Discover More
-                    </button>
-                </div>
+                @yield('nextEvent')
             </div>
         </header>
 
@@ -55,9 +47,11 @@
         </section>
 
         <div class="container mx-auto px-4">
+            @includeIf('components.message-bag')
             @yield('content')
         </div>
 
+        @yield('modal')
         @yield('scripts')
     </body>
 </html>

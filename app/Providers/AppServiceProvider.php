@@ -2,7 +2,10 @@
 
 namespace App\Providers;
 
+use App\View\Components\Alerts\Error;
+use Illuminate\Console\View\Components\Alert;
 use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\Facades\URL;
 use Illuminate\Support\ServiceProvider;
 
@@ -25,5 +28,8 @@ class AppServiceProvider extends ServiceProvider
         if (App::environment('production')) {
             URL::forceScheme('https');
         }
+
+        // If more components are added, we need to make a service provider for the components
+        Blade::component('alert-error', Error::class);
     }
 }

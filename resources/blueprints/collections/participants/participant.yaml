@@ -9,21 +9,17 @@ tabs:
             field:
               type: text
               required: true
-          -
-            handle: email
-            field:
-              input_type: text
-              antlers: false
-              type: text
-              display: Email
-              listable: hidden
-              instructions_position: above
-              visibility: visible
-              replicator_preview: true
-              hide_display: false
               validate:
                 - required
                 - email
+              instructions_position: above
+              listable: true
+              visibility: visible
+              replicator_preview: true
+              input_type: text
+              antlers: false
+              hide_display: false
+              display: Email
           -
             handle: name
             field:
@@ -31,13 +27,11 @@ tabs:
               antlers: false
               type: text
               display: Name
-              listable: hidden
+              listable: true
               instructions_position: above
               visibility: visible
               replicator_preview: true
               hide_display: false
-              validate:
-                - required
           -
             handle: about_you
             field:
@@ -52,12 +46,5 @@ tabs:
   sidebar:
     display: Sidebar
     sections:
-      -
-        fields:
-          -
-            handle: slug
-            field:
-              type: slug
-              localizable: true
-              validate: 'max:200'
+      - {  }
 title: Participant
