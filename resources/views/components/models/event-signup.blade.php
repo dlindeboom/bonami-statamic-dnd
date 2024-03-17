@@ -2,7 +2,7 @@
     <div id="signupModal"
          class="hidden fixed inset-0 z-10 overflow-auto bg-gray-600 bg-opacity-50 flex items-center justify-center">
         <!-- Modal Content -->
-        <div class="bg-white rounded-lg shadow-lg mx-4 md:mx-0 my-10 p-4 md:p-8 lg:p-12 lg:w-2/3 w-4/5 ">
+        <div class="bg-white rounded-lg shadow-lg mx-4 md:mx-0 my-10 p-4 md:p-8 lg:p-12 lg:w-2/3 w-11/12 ">
             <!-- Close Button -->
             <div class="flex justify-end">
                 <button onclick="closeModal()" aria-label="Close" class="text-black hover:text-gray-700">
@@ -50,7 +50,6 @@
                                   d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
                             </svg>
                         </span>
-
                     </label>
                 </div>
 

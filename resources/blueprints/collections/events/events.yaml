@@ -65,9 +65,9 @@ tabs:
               full_width: false
               columns: 1
               rows: 1
-              time_enabled: false
+              time_enabled: true
               time_seconds_enabled: false
-              format: d-M-Y
+              format: 'd-M-Y H:i:s'
               type: date
               display: 'Event Date'
               listable: hidden
