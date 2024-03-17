@@ -11,12 +11,18 @@
 
         </header>
 
-        <div class="container mx-auto px-4">
+        <div class="container mx-auto px-4 lg:w-2/3">
             @includeIf('components.message-bag')
             @yield('content')
         </div>
         @yield('scripts')
-        <x-footer />
+
+        <x-footer.menu :street="$address_info['street'] ?? null"
+                       :city="$address_info['city'] ?? null"
+                       :zip="$address_info['postal_code'] ?? null"
+                       :phone="$address_info['phone'] ?? null"
+                       :logoUrl="$address_info['logo'] ?? null"
+        />
     </body>
 </html>
 

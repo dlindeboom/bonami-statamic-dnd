@@ -1,0 +1,21 @@
+tree:
+  -
+    id: eb86f64a-c030-42c4-93a1-681272a2f585
+    title: 'Prijs en Openingstijd'
+    url: 'https://computermuseum.nl/museum-informatie/entree-prijzen/'
+  -
+    id: 48582b6d-bebd-4087-8d50-34f234ab36d5
+    title: 'Adres en parkeren'
+    url: 'https://computermuseum.nl/museum-informatie/adres-parkeren/'
+  -
+    id: f76f5f50-7595-4d89-bb79-3d6e6ba2458b
+    title: Huisregels
+    url: 'https://computermuseum.nl/museum-informatie/huisregels/'
+  -
+    id: 4e37dbba-2b73-4e3d-8ad3-30c8b2e2aa8a
+    title: Museumwinkel
+    url: 'https://computermuseum.nl/museum-informatie/museumwinkel/'
+  -
+    id: 5aaf4c91-0636-4ee9-a395-e3c5879e9fb9
+    title: 'Eten en drinken'
+    url: 'https://computermuseum.nl/museum-informatie/eten-drinken/'

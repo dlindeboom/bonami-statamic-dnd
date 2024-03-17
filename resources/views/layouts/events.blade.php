@@ -22,6 +22,12 @@
 
         @yield('modal')
         @yield('scripts')
-        <x-footer />
+
+        <x-footer.menu :street="$address_info['street'] ?? null"
+                       :city="$address_info['city'] ?? null"
+                       :zip="$address_info['postal_code'] ?? null"
+                       :phone="$address_info['phone'] ?? null"
+                       :logoUrl="$address_info['logo'] ?? null"
+        />
     </body>
 </html>
