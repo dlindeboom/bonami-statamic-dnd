@@ -1,0 +1,28 @@
+tabs:
+  main:
+    display: Main
+    sections:
+      -
+        fields:
+          -
+            handle: icon
+            field:
+              options:
+                fa-discord: Discord
+                fa-youtube: Youtube
+                fa-square-facebook: Facebook
+                fa-tiktok: Tiktok
+                fa-instagram: Instagram
+              taggable: false
+              push_tags: false
+              multiple: false
+              clearable: false
+              searchable: true
+              cast_booleans: false
+              type: select
+              display: Icon
+              listable: hidden
+              instructions_position: above
+              visibility: visible
+              replicator_preview: true
+              hide_display: false

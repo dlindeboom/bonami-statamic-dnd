@@ -21,24 +21,6 @@ module.exports = {
                 'custom-radius': '0.5rem',
             },
         },
-        // typography: (theme) => ({
-        //     DEFAULT: {
-        //         css: {
-        //             h1: {
-        //                 fontSize: '2.25rem',
-        //                 lineHeight: '2.5rem',
-        //             },
-        //             h2: {
-        //                 fontSize: '1.5rem',
-        //                 lineHeight: '2rem',
-        //             },
-        //             h3: {
-        //                 fontSize: '1.25rem',
-        //                 lineHeight: '1.75rem',
-        //             },
-        //         },
-        //     },
-        // }),
     },
     plugins: [
         require('@tailwindcss/typography'),

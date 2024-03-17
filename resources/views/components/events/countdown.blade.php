@@ -1,6 +1,7 @@
 @php
     /** @var \Carbon\Carbon $now */
     /** @var \Statamic\Entries\Entry $nextEvent */
+    /** @var \Carbon\Carbon $nextEventDate */
     $now = now();
     $nextEventDate = $nextEvent ? $nextEvent->event_date : null;
 
@@ -19,7 +20,7 @@
     $minutes = $minutes < 10 ? "0" . $minutes : $minutes;
 @endphp
 
-<section class="container mx-auto text-center py-6">
+<section id="countdown" class="container mx-auto text-center py-6">
     <h2 class="text-3xl font-bold mb-4 lg:mb-8 text-bonami-blue">COUNTDOWN TO EVENT</h2>
     <div class="flex justify-center items-center space-x-4 lg:space-x-8">
         <div class="lg:p-4">
@@ -45,11 +46,11 @@
     document.addEventListener('DOMContentLoaded', function () {
         const eventDate = new Date('{{ $nextEventDate->toIso8601String() }}').getTime();
 
+        // Interval isn't the best way to do this, since it's not accurate, but it's good enough for what we need
         const countdownFunction = setInterval(function() {
             const now = new Date().getTime();
             const timeLeft = eventDate - now;
 
-            // Time calculations for days, hours, minutes and seconds
             const days = addZero(Math.floor(timeLeft / (1000 * 60 * 60 * 24)));
             const hours = addZero(Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)));
             const minutes = addZero(Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60)));

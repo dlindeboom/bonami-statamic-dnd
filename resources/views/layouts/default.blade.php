@@ -5,11 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
     <body class="bg-white font-sans leading-normal tracking-normal">
-        <nav class="bg-bonami-blue text-white p-4">
-
-        </nav>
-
-        <header class="relative text-white text-center py-40 bg-no-repeat bg-top bg-cover border-b-4 border-bonami-red"
+        <header class="relative text-white text-center py-40 bg-no-repeat bg-top bg-cover border-b-4
+        border-b-bonami-red border-t-8 border-t-bonami-blue"
                 style="background-image: url('@yield('heroImage')');">
 
         </header>
@@ -19,6 +16,7 @@
             @yield('content')
         </div>
         @yield('scripts')
+        <x-footer />
     </body>
 </html>
 

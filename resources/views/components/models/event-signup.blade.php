@@ -1,9 +1,9 @@
 <div>
-    <div id="signupModal"
+    <div id="signup-modal"
          class="hidden fixed inset-0 z-10 overflow-auto bg-gray-600 bg-opacity-50 flex items-center justify-center">
-        <!-- Modal Content -->
-        <div class="bg-white rounded-lg shadow-lg mx-4 md:mx-0 my-10 p-4 md:p-8 lg:p-12 lg:w-2/3 w-11/12 ">
-            <!-- Close Button -->
+
+        <div id="signup-modal-body" class="bg-white rounded-lg shadow-lg mx-4 md:mx-0 my-10 p-4 md:p-8 lg:p-12 lg:w-2/3 w-11/12 ">
+
             <div class="flex justify-end">
                 <button onclick="closeModal()" aria-label="Close" class="text-black hover:text-gray-700">
                     <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -11,7 +11,7 @@
                     </svg>
                 </button>
             </div>
-            <!-- Form -->
+
             <form method="post" class="w-full" action="{{ route('events.signup', $eventId) }}">
                 @method('post')
                 {{ csrf_field() }}
@@ -53,7 +53,6 @@
                     </label>
                 </div>
 
-                <!-- Submit Button -->
                 <button type="submit"
                         class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline mt-4">
                     Join Now
@@ -64,11 +63,11 @@
 
     <script>
         function closeModal() {
-            document.getElementById('signupModal').classList.add('hidden');
+            document.getElementById('signup-modal').classList.add('hidden');
         }
 
         document.addEventListener('open-signup', function () {
-            document.getElementById('signupModal').classList.remove('hidden');
+            document.getElementById('signup-modal').classList.remove('hidden');
         });
     </script>
 </div>

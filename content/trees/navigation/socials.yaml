@@ -1,0 +1,19 @@
+tree:
+  -
+    id: 5010d216-4fc2-41c3-b3bd-f32f23d31e96
+    title: Facebook
+    url: 'https://www.facebook.com/spelcomputermuseum'
+    data:
+      icon: fa-facebook-square
+  -
+    id: f2aab2f7-8e79-460e-9462-bab4dd733155
+    title: Youtube
+    url: 'https://www.youtube.com/channel/UC-kUFRoIbVFGgXLIYmsMaCQ/videos'
+    data:
+      icon: fa-youtube
+  -
+    id: 77849023-34c7-472a-9d11-876d41b807ef
+    title: Discord
+    url: 'https://discord.gg/GK4GmwGe8r'
+    data:
+      icon: fa-discord

@@ -13,7 +13,7 @@
             <p class="text-2xl">at Bonami</p>
             <p class="text-xl font-medium">Next adventure: {{ $nextEvent->title }}</p>
             <p class="text-xl font-medium">{{ $nextEvent->event_date->format('F jS, Y H:i') }}</p>
-            <div class="mt-4">
+            <div class="mt-4 flex justify-center">
                 <button
                     class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"
                     onclick="document.dispatchEvent(new Event('open-signup'))">

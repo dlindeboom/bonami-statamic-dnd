@@ -26,7 +26,7 @@ class ParticipantService
      * @throws ParticipantAlreadySignUp
      * @throws EventIsFullException
      */
-    public function linkToEvent(string $eventId, Participant $participantData): StatamicEntry
+    public function linkEvent(string $eventId, Participant $participantData): StatamicEntry
     {
         $event = $this->eventService->get($eventId);
         $participant = $this->getByEmail($participantData->getEmail());
