@@ -7,7 +7,7 @@
 @endphp
 
 <footer class="bg-colors-cool-gray-800 pt-6 mt-8 text-colors-cool-gray-500 shadow-lg">
-    <div class="container mx-auto flex py-4 lg:flex-row flex-col justify-between lg:space-x-6">
+    <div class="container mx-auto flex py-4 lg:flex-row flex-col justify-between px-4 lg:space-x-6">
         <ul class="lg:w-1/4 w-full">
             <img src="{{ $logoUrl }}" alt="Bonami SpelComputer Museum" class="h-32 mb-2">
             <li class="text-colors-cool-gray-100 font-bold pb-2">COMPUTER MUSEUM</li>
