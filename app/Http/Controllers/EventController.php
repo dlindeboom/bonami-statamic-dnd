@@ -21,8 +21,9 @@ class EventController extends Controller
         $data = $request->validate([
             'name' => 'required',
             'email' => 'required|email',
-            'about_you' => 'nullable|max:140',
-        ]);
+            'about_you' => 'nullable|max:500',
+            'hide_info' => 'nullable',
+        ]); // This is a simplified version of the validation. The real one is more complex.
 
         try {
             $participant = $this->participantService->createParticipantObject($data);

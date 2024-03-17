@@ -1,6 +1,6 @@
 title: Events
-template: events/index
-layout: layout
+template: events/show
+layout: events/show
 mount: 89061e91-1c93-4a6a-87e5-e64c02a38ed7
 revisions: false
 route: '{mount}/{slug}'

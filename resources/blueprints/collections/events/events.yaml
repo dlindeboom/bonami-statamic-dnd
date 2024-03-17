@@ -138,19 +138,6 @@ tabs:
               show_regenerate: true
               hide_display: false
           -
-            handle: layout
-            field:
-              hide_partials: true
-              blueprint: true
-              type: template
-              display: layout
-              listable: hidden
-              instructions_position: above
-              visibility: visible
-              replicator_preview: true
-              hide_display: false
-              folder: events
-          -
             handle: date
             field:
               type: date

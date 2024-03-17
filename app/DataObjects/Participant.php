@@ -12,13 +12,15 @@ class Participant extends AbstractDataObject
     public const EMAIL = 'title';
     public const NAME = 'name';
     public const ABOUT_YOU = 'about_you';
+    public const HIDE_INFO = 'hide_info';
 
     public function toArray():array
     {
         return [
             self::EMAIL => $this->getEmail(),
             self::NAME => ucfirst($this->get('name')),
-            self::ABOUT_YOU => $this->get('about_you'),
+            self::ABOUT_YOU => strip_tags($this->get('about_you')),
+            self::HIDE_INFO => (bool)$this->get('hide_info'),
         ];
     }
 

@@ -40,9 +40,9 @@
                     <label for="hide_info" class="inline-flex items-center">
                         <input id="hide_info" checked type="checkbox" name="hide_info"
                                class="form-checkbox h-5 w-5 text-gray-600"
-                               title="Selecting this will hide your signup information from public view, and you'll appear as 'Anonymous' in any public lists.">
+                               title="Selecting this will hide your signup information from public view, and you'll appear as 'Anonymous' in the participants lists. The Dungeon master will still be able to see your info">
                         <span class="ml-2 text-gray-700 text-sm flex items-center"
-                              title="Selecting this will hide your signup information from public view, and you'll appear as 'Anonymous' in any public lists.">
+                              title="Selecting this will hide your signup information from public view, and you'll appear as 'Anonymous' in the participants lists. The Dungeon master will still be able to see your info">
                             Hide info from public
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
                                  stroke="currentColor">
