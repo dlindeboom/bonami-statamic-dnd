@@ -40,6 +40,17 @@ tabs:
               visibility: visible
               replicator_preview: true
               hide_display: false
+          - handle: name
+            field:
+              input_type: text
+              antlers: false
+              type: text
+              display: Name
+              listable: hidden
+              instructions_position: above
+              visibility: visible
+              replicator_preview: true
+              hide_display: false
           -
             handle: street
             field:

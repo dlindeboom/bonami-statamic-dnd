@@ -1,15 +1,21 @@
 @php
-    use Statamic\Facades\GlobalSet;use Statamic\Facades\Site;
+    use Carbon\Translator;use Illuminate\Support\Carbon;
+    /** @var \Statamic\Entries\Entry $event */
+    /** @var array{name:string, logo_color: string, street: string, postal_code:string, city:string} $addressInfo */
 
-    $site = Site::get('default');
-    $set = GlobalSet::findByHandle('address_info');
-    $addressInfo = $set->inDefaultSite();
-    $iconUrl = 'storage/' .  $addressInfo->get('logo_color');
+
+   ;$addressInfo = $addressInfo ?? [];
+    $street = $addressInfo['street'] ?? '';
+    $zip = $addressInfo['postal_code'] ?? '';
+    $name = $addressInfo['name'] ?? '';
+    $iconUrl = $addressInfo['logo_color'] ?? '';
+    $city = $addressInfo['city'] ?? '';
+    /** @var Carbon $eventDate */
+    $eventDate = $event->event_date;
+    $eventDate->setLocalTranslator(Translator::get('nl'));
 @endphp
-
-
     <!DOCTYPE html>
-<html lang="en">
+<html lang="nl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -36,7 +42,7 @@
         }
 
         .email-body {
-            padding: 0 20px;
+            padding: 30px;
             background-color: #ffffff; /* White */
             color: #303030; /* Lighter gray for text */
         }
@@ -44,9 +50,13 @@
         .email-footer {
             background-color: #3d3d3d; /* Slightly lighter gray than the header */
             color: #f4f4f4; /* Very light gray, almost white */
-            padding: 20px;
+            padding: 30px 20px;
             text-align: center;
             font-size: 14px;
+        }
+
+        .email-footer p {
+            margin: 0;
         }
 
         .btn-primary {
@@ -69,7 +79,6 @@
             }
         }
     </style>
-
 </head>
 <body>
 <table border="0" cellpadding="0" cellspacing="0" class="email-container">
@@ -81,30 +90,30 @@
     </tr>
     <tr>
         <td class="email-body">
-            <h2>Your session confirmation</h2>
+            <h2 style="margin-top: 0">Je sessiebevestiging</h2>
 
-            <p>Thank you for reserving your spot! Here are the essential details for the upcoming event:</p>
+            <p>Super dat je je hebt aangemeld! Hier zijn de belangrijkste details voor het aankomende evenement:</p>
 
-            <p><strong>When:</strong> Sunday, March 24, 2024, at 13:30 <br>
-                <strong>Where:</strong> Bonami SpelComputer Museum, Ossenkamp 4, 8024AE Zwolle</p>
+            <p>
+                <strong>Wanneer:</strong> {{ $eventDate->isoFormat('dddd D MMMM YYYY, [om] HH:mm') }}<br>
+                <strong>Waar:</strong> {{ $name }}, {{ $street }}, {{ $zip }} {{ $city }}</p>
 
-            <p>For more information about the event, please visit the link below</p>
+            <p>Voor meer info over het evenement, check de link hieronder</p>
             <div style="text-align: center">
-                <a href="https://bonami-dnd.orillion.nl" class="btn-primary">Event details</a>
+                <a href="{{ $event->absoluteUrl() }}" class="btn-primary">Evenement details</a>
             </div>
 
+            <p>We kijken er naar uit om samen een avontuurlijke dag te beleven. Heb je nog vragen of wil je meer weten,
+                schroom dan niet om contact op te nemen.</p>
 
-            <p>We're excited to have you join for an adventure-filled day. If you have any questions or need further
-                information, please don't hesitate to reach out.</p>
+            <p style="margin-bottom: 0">Zie je in het museum voor een te gekke D&D ervaring!</p>
 
-            <p>See you at the museum for a thrilling D&D experience!</p>
         </td>
     </tr>
     <tr>
         <td class="email-footer">
-            <!-- Footer Content -->
-            <p class="text-muted">You're receiving this email because you signed up at our website.</p>
-            <p>© {{ date('Y') }} Bonami Games & Computers Museum. All rights reserved.</p>
+            <p class="text-muted">Je ontvangt deze e-mail omdat je je hebt aangemeld op onze website.</p>
+            <p>© {{ date('Y') }} Bonami SpelComputer Museum. Alle rechten voorbehouden.</p>
         </td>
     </tr>
 </table>

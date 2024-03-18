@@ -2,6 +2,7 @@ title: 'Address info'
 data:
   logo_color: bonami-logo.png
   logo: bonami-logo-footer.png
+  name: 'Bonami SpelComputer Museum'
   street: 'Ossenkamp 4'
   city: Zwolle
   postal_code: 8024AE

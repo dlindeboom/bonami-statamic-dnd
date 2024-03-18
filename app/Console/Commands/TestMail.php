@@ -2,9 +2,10 @@
 
 namespace App\Console\Commands;
 
-use App\Mail\EventSignupConfirmation;
+use App\DataObjects\Participant;
+use App\Services\Events\EventService;
+use App\Services\Participants\ParticipantService;
 use Illuminate\Console\Command;
-use Illuminate\Support\Facades\Mail;
 
 class TestMail extends Command
 {
@@ -13,7 +14,7 @@ class TestMail extends Command
      *
      * @var string
      */
-    protected $signature = 'app:test-mail';
+    protected $signature = 'app:test-mail {email} {event_id}';
 
     /**
      * The console command description.
@@ -27,6 +28,20 @@ class TestMail extends Command
      */
     public function handle()
     {
-        Mail::to('dennis@mooore.nl')->send(new EventSignupConfirmation());
+        /** @var ParticipantService $participantService */
+        $participantService = app(ParticipantService::class);
+        /** @var EventService $eventService */
+        $eventService = app(EventService::class);
+
+        $participant = $participantService->getByEmail($this->argument('email'));
+
+        if ($participant === null) {
+            $this->error('Participant not found');
+            return;
+        }
+
+        $event = $eventService->get($this->argument('event_id'));
+
+        $eventService->sendConformationMail($event, $participant->get(Participant::EMAIL));
     }
 }

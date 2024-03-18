@@ -7,8 +7,12 @@ namespace App\Services\Events;
 use App\Exceptions\Events\EventIsFullException;
 use App\Exceptions\Events\EventNotFoundException;
 use App\Exceptions\Events\ParticipantAlreadySignUp;
+use App\Mail\EventSignupConfirmation;
+use Illuminate\Support\Facades\Mail;
+use RuntimeException;
 use Statamic\Entries\Entry as StatamicEntry;
 use Statamic\Facades\Entry;
+use Statamic\Facades\GlobalSet;
 
 class EventService
 {
@@ -29,12 +33,13 @@ class EventService
 
     /**
      * @param StatamicEntry $event
-     * @param StatamicEntry $participant
+     * @param string $participantId
      * @return StatamicEntry
-     * @throws ParticipantAlreadySignUp
      * @throws EventIsFullException
+     * @throws ParticipantAlreadySignUp
+     * @throws RuntimeException
      */
-    public function addParticipant(StatamicEntry $event, StatamicEntry $participant): StatamicEntry
+    public function addParticipant(StatamicEntry $event, string $participantId): StatamicEntry
     {
         $participants = $event->get('participants', []);
         $maxSlots = $event->get('max_participants');
@@ -43,18 +48,43 @@ class EventService
             throw new EventIsFullException();
         }
 
-        if (in_array($participant->id, $participants)) {
+        if (in_array($participantId, $participants)) {
             throw new ParticipantAlreadySignUp();
         }
 
-        $participants[] = $participant->id;
+        $participants[] = $participantId;
         $event->set('participants', $participants);
         $totalParticipants = count($participants);
 
         $slotsLeft = $maxSlots - $totalParticipants;
         $event->set('slots_left', $slotsLeft);
 
-        return  $this->save($event);
+        return $this->save($event);
+    }
+
+    /**
+     * @param StatamicEntry $event
+     * @param string $email
+     * @return void
+     */
+    public function sendConformationMail(StatamicEntry $event, string $email): void
+    {
+        $set = GlobalSet::findByHandle('address_info');
+
+        if ($set === null) {
+            throw new RuntimeException('No address info found');
+        }
+
+        $addressInfo = $set->inDefaultSite();
+        $addressInfo = [
+            'name' => $addressInfo->get('name'),
+            'logo_color' => 'storage/' . $addressInfo->get('logo_color'),
+            'street' => $addressInfo->get('street'),
+            'postal_code' => $addressInfo->get('postal_code'),
+            'city' => $addressInfo->get('city'),
+        ];
+
+        Mail::to($email)->send(new EventSignupConfirmation($addressInfo, $event));
     }
 
     public function save(StatamicEntry $event): StatamicEntry

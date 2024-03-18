@@ -5,10 +5,10 @@ namespace App\Http\Controllers;
 use App\Exceptions\Events\EventIsFullException;
 use App\Exceptions\Events\EventNotFoundException;
 use App\Exceptions\Events\ParticipantAlreadySignUp;
-use App\Models\EventSignup;
 use App\Services\Participants\ParticipantService;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use RuntimeException;
 
 class EventController extends Controller
 {
@@ -32,7 +32,7 @@ class EventController extends Controller
             return redirect(null, 404)->back()->withErrors(
                 'The event you are trying to sign up for does not exist.'
             );
-        } catch (ParticipantAlreadySignUp $e) {
+        } catch (ParticipantAlreadySignUp|RuntimeException $e) {
             // We show the same message as if you have successfully signed up to avoid leaking information.
             // This might cause some confusion, but it's a security measure.
             return redirect()->back()->with('success', 'You have successfully signed up for the event!');

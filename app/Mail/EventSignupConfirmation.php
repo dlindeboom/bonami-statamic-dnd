@@ -3,11 +3,11 @@
 namespace App\Mail;
 
 use Illuminate\Bus\Queueable;
-use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
+use Statamic\Entries\Entry;
 
 class EventSignupConfirmation extends Mailable
 {
@@ -15,10 +15,16 @@ class EventSignupConfirmation extends Mailable
 
     /**
      * Create a new message instance.
+     *
+     * @var array{
+     *     name:string, logo_color: string,
+     *     street: string,
+     *     postal_code:string,
+     *     city:string
+     * } $addressInfo
      */
-    public function __construct()
+    public function __construct(public array $addressInfo, public Entry $event)
     {
-        //
     }
 
     /**
@@ -27,7 +33,7 @@ class EventSignupConfirmation extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'Event Signup Confirmation',
+            subject: 'Evenement aanmelding bevestiging',
         );
     }
 

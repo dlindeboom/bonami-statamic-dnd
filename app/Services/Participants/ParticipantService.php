@@ -32,7 +32,8 @@ class ParticipantService
         $participant = $this->getByEmail($participantData->getEmail());
 
         if ($participant !== null) {
-            $this->eventService->addParticipant($event, $participant);
+            $this->eventService->addParticipant($event, $participant->id);
+            $this->eventService->sendConformationMail($event, $participant->get(Participant::EMAIL));
 
             return $participant;
         }
@@ -42,7 +43,8 @@ class ParticipantService
             ->data($participantData->toArray());
         $participant = $this->save($participant);
 
-        $this->eventService->addParticipant($event, $participant);
+        $this->eventService->addParticipant($event, $participant->id);
+        $this->eventService->sendConformationMail($event, $participant->get(Participant::EMAIL));
 
         return $participant;
     }
