@@ -20,6 +20,7 @@
                     <label for="email" class="block text-gray-700 text-sm font-bold mb-2">Email:</label>
                     <input id="email"
                            placeholder="mail@example.com"
+                           value="{{ old('email') }}"
                            type="email" name="email"
                            class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
                 </div>
@@ -27,6 +28,7 @@
                     <label for="name" class="block text-gray-700 text-sm font-bold mb-2">Name:</label>
                     <input id="name"
                            placeholder="John Doe"
+                           value="{{ old('name') }}"
                            type="text" name="name"
                            class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
                 </div>
@@ -34,7 +36,9 @@
                     <label for="about_you" class="block text-gray-700 text-sm font-bold mb-2">About You:</label>
                     <textarea id="about_you" name="about_you" rows="4"
                               class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                              placeholder="Share your experience with D&D (e.g., beginner, some experience, etc.), what you hope to learn, and a bit about yourself."></textarea>
+                              placeholder="Share your experience with D&D (e.g., beginner, some experience, etc.), what you hope to learn, and a bit about yourself.">
+                        {{ old('about_you') }}
+                    </textarea>
                 </div>
                 <div class="mb-4">
                     <label for="hide_info" class="inline-flex items-center">

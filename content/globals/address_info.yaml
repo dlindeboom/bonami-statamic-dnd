@@ -1,5 +1,6 @@
 title: 'Address info'
 data:
+  logo_color: bonami-logo.png
   logo: bonami-logo-footer.png
   street: 'Ossenkamp 4'
   city: Zwolle

@@ -18,4 +18,8 @@ Route::get('/', function () {
     return redirect('/events');
 });
 
+Route::get('/event/mails', function () {
+    return view('mails.events.confirmation');
+});
+
 Route::post('/events/{eventId}/signup', [EventController::class, 'signup'])->name('events.signup');
