@@ -28,17 +28,21 @@ class EventController extends Controller
         try {
             $participant = $this->participantService->createParticipantObject($data);
             $this->participantService->linkEvent($eventId, $participant);
-        } catch (EventNotFoundException $e) {
+        } catch (EventNotFoundException) {
             return redirect(null, 404)->back()->withErrors(
                 'The event you are trying to sign up for does not exist.'
             );
-        } catch (ParticipantAlreadySignUp|RuntimeException $e) {
+        } catch (ParticipantAlreadySignUp) {
             // We show the same message as if you have successfully signed up to avoid leaking information.
             // This might cause some confusion, but it's a security measure.
             return redirect()->back()->with('success', 'You have successfully signed up for the event!');
-        } catch (EventIsFullException $e) {
+        } catch (EventIsFullException) {
             return redirect()->back()->withErrors(
                 'The event is full.'
+            );
+        } catch (RuntimeException) {
+            return redirect()->back()->withErrors(
+                'An error occurred while signing up for the event.'
             );
         }
 

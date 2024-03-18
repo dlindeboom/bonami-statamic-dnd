@@ -3,7 +3,6 @@
     /** @var \Statamic\Entries\Entry $event */
     /** @var array{name:string, logo_color: string, street: string, postal_code:string, city:string} $addressInfo */
 
-
    ;$addressInfo = $addressInfo ?? [];
     $street = $addressInfo['street'] ?? '';
     $zip = $addressInfo['postal_code'] ?? '';
