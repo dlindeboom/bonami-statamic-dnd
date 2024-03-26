@@ -96,7 +96,8 @@
 
                     <div class="mb-4">
                         <h3 class="text-xl font-semibold">What to Expect</h3>
-                        <p>Join us for a special Dungeons & Dragons session led by Dungeon Master @Dennis (DrDerpling).
+                        <p>Join us for a special Dungeons & Dragons session led by Dungeon
+                            Master {{ $page?->dungeon_master?->title }}.
                             Whether you're a seasoned veteran or new to D&D, this adventure is perfect for anyone
                             looking for excitement and camaraderie.</p>
                         <p>Capacity is limited to 3 - 5 players, with snacks provided. Bring your own level 1, balanced
