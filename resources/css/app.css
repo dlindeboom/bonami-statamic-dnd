@@ -4,7 +4,7 @@
 @tailwind components;
 @tailwind utilities;
 
-@media (max-width: 300px) {
+@media (max-width: 340px) {
     #countdown {
         display: none;
     }
@@ -17,4 +17,8 @@
         margin: 0;
         width: 100%;
     }
+}
+
+.dm-bio p {
+    margin: 0 0 0 1rem;
 }

@@ -15,7 +15,7 @@
 
         @yield('countdown')
 
-        <div id="content-body" class="container mx-auto px-4">
+        <div id="content-body" class="container mx-auto px-4 lg:max-w-4xl">
             @includeIf('components.message-bag')
             @yield('content')
         </div>

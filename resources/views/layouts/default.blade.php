@@ -11,7 +11,7 @@
 
         </header>
 
-        <div class="container mx-auto px-4">
+        <div class="container mx-auto px-4 lg:max-w-7xl">
             @includeIf('components.message-bag')
             @yield('content')
         </div>

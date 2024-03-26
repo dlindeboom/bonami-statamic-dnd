@@ -27,36 +27,64 @@
             </div>
 
             <!-- Side Column for Desktop DM Info -->
-            <div class="lg:flex flex-1 flex-col mb-4">
+            <div class="lg:flex flex-1 flex-col mb-4 gap-4">
                 <!-- Join Event Section for Desktop -->
-                <div class="bg-white p-6 rounded-lg mb-4 shadow-lg">
-                        <button
-                            type="button"
-                            onclick="document.dispatchEvent(new Event('open-signup'))"
-                            class="bg-bonami-blue text-white font-bold py-2 px-4 rounded hover:bg-blue-700 disabled:opacity-50"
-                            @if($slotsLeft <= 0) disabled @endif>
-                            Join Now
-                        </button>
-                    <div class="mt-4">
-                        <p><strong>Slots Remaining:</strong> {{ $slotsLeft }}</p>
-                        <p><strong>Participants:</strong> {{ $page->participants->count() }}/{{ $page->max_participants }}</p>
+                <div class="bg-white p-6 rounded-lg shadow-lg">
+                    <button
+                        type="button"
+                        onclick="document.dispatchEvent(new Event('open-signup'))"
+                        class="bg-bonami-blue text-white font-bold py-2 px-4 rounded hover:bg-blue-800 disabled:opacity-50"
+                        @if($slotsLeft <= 0) disabled @endif>
+                        Join Now
+                    </button>
+                    <div class="mt-4 space-y-2">
+                        <div class="flex items-center">
+                            <i class="fas fa-users mr-2 text-bonami-blue"></i>
+                            <p><strong>Slots Remaining:</strong> {{ $slotsLeft }}</p>
+                        </div>
+                        <div class="flex items-center">
+                            <i class="fas fa-user-shield mr-2 text-bonami-blue"></i>
+                            <p><strong>Participants:</strong> {{ $page->participants->count() }}
+                                /{{ $page->max_participants }}</p>
+                        </div>
+
+                        <h3 class="mt-4 mb-2 font-bold text-lg">Brave Adventurers Signed Up:</h3>
+
+                        @foreach($page->participants as $participant)
+                            <div class="bg-gray-100 p-4 rounded-lg">
+                                @if($participant->hide_info)
+                                    <p><strong>Name:</strong> Mysterious Adventurer</p>
+                                    <p><strong>About Me:</strong> Dwelling in the shadows for now, this enigmatic figure
+                                        vows to reveal themselves when the moment is right, their tale yet to be told.
+                                    </p>
+                                @else
+                                    <p><strong>Name:</strong> {{ $participant->name }}</p>
+                                    <p><strong>About Me:</strong> {{ $participant->about_you }}</p>
+                                @endif
+                            </div>
+                        @endforeach
                     </div>
                 </div>
 
                 <!-- DM Info -->
                 @if($page->dungeon_master)
-                    <div class="bg-white p-6 rounded-lg shadow-lg mb-4">
+                    <div class="bg-white p-6 rounded-lg shadow-lg">
                         <h3 class="text-xl font-bold">Dungeon Master: {{ $page->dungeon_master->title }}</h3>
 
-                        <div class="prose prose-sm max-w-none">
-                            <span class="font-semibold text-gray-700">Bio:</span>{!! $page->dungeon_master->bio !!}
+                        <div class="prose prose-sm max-w-none mt-2 dm-bio">
+                            <span class="font-semibold text-gray-700">Bio:</span>
+                            {!! $page->dungeon_master->bio !!}
                         </div>
 
                         <a href="{{ $page->dungeon_master->rules_url }}" target="_blank"
-                           class="text-bonami-blue inline-block mt-2">View DM's Rules</a>
+                           class="inline-flex items-center text-bonami-blue mt-2 hover:underline">
+                            <i class="fas fa-book-open mr-1"></i>
+                            View DM's Rules
+                        </a>
                     </div>
                 @endif
             </div>
+
         </div>
     </div>
 
