@@ -27,7 +27,7 @@ jobs:
       - name: Deploy with Deployer
         run: |
           cat ~/.ssh/id_ed25519
-          ./vendor/bin/dep deploy production -vvv
+          ./vendor/bin/dep deploy production
         env:
           SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
           DEPLOY_HOST: ${{ secrets.DEPLOY_HOST }}
