@@ -8,5 +8,4 @@ use Exception;
 
 class ParticipantAlreadySignUp extends Exception
 {
-
 }

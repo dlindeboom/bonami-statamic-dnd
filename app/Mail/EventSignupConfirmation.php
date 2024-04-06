@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Mail;
 
 use Illuminate\Bus\Queueable;
@@ -11,12 +13,13 @@ use Statamic\Entries\Entry;
 
 class EventSignupConfirmation extends Mailable
 {
-    use Queueable, SerializesModels;
+    use Queueable;
+    use SerializesModels;
 
     /**
      * Create a new message instance.
      *
-     * @var array{
+     * @param array{
      *     name:string, logo_color: string,
      *     street: string,
      *     postal_code:string,

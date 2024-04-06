@@ -21,18 +21,18 @@ class AbstractDataObject implements JsonSerializable
         return $this->data;
     }
 
-    public function setData(array $data): AbstractDataObject
+    public function setData(array $data): self
     {
         $this->data = $data;
         return $this;
     }
 
-    public function get(string $name)
+    public function get(string $name): mixed
     {
         return Arr::get($this->data, $name);
     }
 
-    public function set(string $name, $value): AbstractDataObject
+    public function set(string $name, mixed $value): self
     {
         $this->data[$name] = $value;
         return $this;

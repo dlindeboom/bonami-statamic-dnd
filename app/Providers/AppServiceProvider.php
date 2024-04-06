@@ -1,9 +1,10 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Providers;
 
 use App\View\Components\Alerts\Error;
-use Illuminate\Console\View\Components\Alert;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\Facades\URL;

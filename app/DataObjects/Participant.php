@@ -14,7 +14,7 @@ class Participant extends AbstractDataObject
     public const ABOUT_YOU = 'about_you';
     public const HIDE_INFO = 'hide_info';
 
-    public function toArray():array
+    public function toArray(): array
     {
         return [
             self::EMAIL => $this->getEmail(),

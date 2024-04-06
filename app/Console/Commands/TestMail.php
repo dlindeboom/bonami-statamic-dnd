@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Console\Commands;
 
 use App\DataObjects\Participant;
@@ -26,7 +28,7 @@ class TestMail extends Command
     /**
      * Execute the console command.
      */
-    public function handle()
+    public function handle(): void
     {
         /** @var ParticipantService $participantService */
         $participantService = app(ParticipantService::class);

@@ -1,0 +1,26 @@
+parameters:
+	ignoreErrors:
+		-
+			message: "#^Call to an undefined method Statamic\\\\Contracts\\\\Entries\\\\QueryBuilder\\:\\:where\\(\\)\\.$#"
+			count: 1
+			path: app/Services/Events/EventService.php
+
+		-
+			message: "#^Call to an undefined method Statamic\\\\Globals\\\\GlobalCollection\\:\\:inDefaultSite\\(\\)\\.$#"
+			count: 1
+			path: app/Services/Events/EventService.php
+
+		-
+			message: "#^Access to protected property Statamic\\\\Entries\\\\Entry\\:\\:\\$id\\.$#"
+			count: 2
+			path: app/Services/Participants/ParticipantService.php
+
+		-
+			message: "#^Call to an undefined method Statamic\\\\Contracts\\\\Entries\\\\Entry\\:\\:collection\\(\\)\\.$#"
+			count: 1
+			path: app/Services/Participants/ParticipantService.php
+
+		-
+			message: "#^Call to an undefined method Statamic\\\\Contracts\\\\Entries\\\\QueryBuilder\\:\\:where\\(\\)\\.$#"
+			count: 1
+			path: app/Services/Participants/ParticipantService.php
