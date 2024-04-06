@@ -19,7 +19,6 @@ services:
             IGNITION_LOCAL_SITES_PATH: '${PWD}'
         volumes:
             - '.:/var/www/html'
-            - '~/.ssh/id_rsa:/root/.ssh/id_rsa'
         networks:
             - sail
         depends_on:
