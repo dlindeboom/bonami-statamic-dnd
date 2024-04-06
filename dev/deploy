@@ -1,0 +1,3 @@
+#!/bin/sh
+
+act push --secret-file "$PWD"/dev/.env
